@@ -54,25 +54,28 @@ public:
 	// y			-- y coordinates of wipe tower in mm ( left bottom corner )
 	// width		-- width of wipe tower in mm ( default 60 mm - leave as it is )
 	// wipe_area	-- space available for one toolchange in mm
-	WipeTowerPrusaMM(float x, float y, float width, float rotation_angle, float cooling_tube_retraction,
-                     float cooling_tube_length, float parking_pos_retraction, float extra_loading_move, 
-                     float bridging, bool set_extruder_trimpot,
-                     const std::vector<std::vector<float>>& wiping_matrix, unsigned int initial_tool, float first_layer_width) :
-    m_wipe_tower_pos(x, y),
-		m_wipe_tower_width(width),
-		m_wipe_tower_rotation_angle(rotation_angle),
-		m_y_shift(0.f),
-		m_z_pos(0.f),
-		m_is_first_layer(false),
-        m_cooling_tube_retraction(cooling_tube_retraction),
-        m_cooling_tube_length(cooling_tube_length),
-        m_parking_pos_retraction(parking_pos_retraction),
-        m_extra_loading_move(extra_loading_move),
-		m_bridging(bridging),
-		m_set_extruder_trimpot(set_extruder_trimpot),
+	WipeTowerPrusaMM(PrintConfig & config,
+        //float x, float y, float width, float rotation_angle, float cooling_tube_retraction,
+        //             float cooling_tube_length, float parking_pos_retraction, float extra_loading_move, 
+        //             float bridging, bool set_extruder_trimpot,
+        const std::vector<std::vector<float>>& wiping_matrix, unsigned int initial_tool, float first_layer_width) :
+        //m_config.high_current_on_filament_swap.value
+        m_wipe_tower_pos(float(config.wipe_tower_x.value), float(config.wipe_tower_y.value)),
+        m_wipe_tower_width(float(config.wipe_tower_width.value)),
+        m_wipe_tower_rotation_angle(float(config.wipe_tower_rotation_angle.value)),
+        m_y_shift(0.f),
+        m_z_pos(0.f),
+        m_is_first_layer(false),
+        m_cooling_tube_retraction(float(config.cooling_tube_retraction.value)),
+        m_cooling_tube_length(float(config.cooling_tube_length.value)),
+        m_parking_pos_retraction(float(config.parking_pos_retraction.value), ),
+        m_extra_loading_move(float(config.extra_loading_move.value)),
+        m_bridging(float(config.wipe_tower_bridging)),
+        m_set_extruder_trimpot(config.high_current_on_filament_swap.value),
         m_current_tool(initial_tool),
         wipe_volumes(wiping_matrix),
-        m_brim_width(first_layer_width)
+        m_brim_width(first_layer_width),
+        m_config(config)
         {}
 
 	virtual ~WipeTowerPrusaMM() {}

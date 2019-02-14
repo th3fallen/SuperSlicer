@@ -1904,13 +1904,14 @@ void Print::_make_wipe_tower()
     this->throw_if_canceled();
 
     // Initialize the wipe tower.
-    WipeTowerPrusaMM wipe_tower(
-        float(m_config.wipe_tower_x.value),     float(m_config.wipe_tower_y.value), 
-        float(m_config.wipe_tower_width.value),
-        float(m_config.wipe_tower_rotation_angle.value), float(m_config.cooling_tube_retraction.value),
-        float(m_config.cooling_tube_length.value), float(m_config.parking_pos_retraction.value),
-        float(m_config.extra_loading_move.value), float(m_config.wipe_tower_bridging), 
-        m_config.high_current_on_filament_swap.value, wipe_volumes,
+    WipeTowerPrusaMM wipe_tower(m_config,
+        //float(m_config.wipe_tower_x.value),     float(m_config.wipe_tower_y.value), 
+        //float(m_config.wipe_tower_width.value),
+        //float(m_config.wipe_tower_rotation_angle.value), float(m_config.cooling_tube_retraction.value),
+        //float(m_config.cooling_tube_length.value), float(m_config.parking_pos_retraction.value),
+        //float(m_config.extra_loading_move.value), float(m_config.wipe_tower_bridging), 
+        //m_config.high_current_on_filament_swap.value
+        , wipe_volumes,
         m_wipe_tower_data.tool_ordering.first_extruder(), this->brim_flow().width);
     
 
