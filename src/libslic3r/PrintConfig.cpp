@@ -711,7 +711,17 @@ void PrintConfigDef::init_fff_params()
     def->cli = "filament-max-volumetric-speed=f@";
     def->min = 0;
     def->mode = comAdvanced;
-    def->default_value = new ConfigOptionFloats { 0. };
+    def->default_value = new ConfigOptionFloats{ 0. };
+
+    def = this->add("filament_max_wipe_tower_speed", coFloat);
+    def->label = L("Max speed on the wipe tower");
+    def->tooltip = L("This setting is used to set the maximum speed when extruding inside the wipe tower (use M220). In %, set 0 to disable and use the Filament type instead.");
+    def->sidetext = L("mm/s");
+    def->cli = "filament-max-wipe-tower-speed=f";
+    def->min = 0;
+    def->max = 200;
+    def->mode = comExpert;
+    def->default_value = new ConfigOptionFloat(0);
 
     def = this->add("filament_loading_speed", coFloats);
     def->label = L("Loading speed");
@@ -861,6 +871,16 @@ void PrintConfigDef::init_fff_params()
     def->enum_values.push_back("EDGE");
     def->enum_values.push_back("NGEN");
     def->enum_values.push_back("PVA");
+    def->enum_values.push_back("other0");
+    def->enum_values.push_back("other1");
+    def->enum_values.push_back("other2");
+    def->enum_values.push_back("other3");
+    def->enum_values.push_back("other4");
+    def->enum_values.push_back("other5");
+    def->enum_values.push_back("other6");
+    def->enum_values.push_back("other7");
+    def->enum_values.push_back("other8");
+    def->enum_values.push_back("other9");
     def->mode = comAdvanced;
     def->default_value = new ConfigOptionStrings { "PLA" };
 
@@ -1459,7 +1479,7 @@ void PrintConfigDef::init_fff_params()
     def = this->add("max_volumetric_speed", coFloat);
     def->label = L("Max volumetric speed");
     def->tooltip = L("This experimental setting is used to set the maximum volumetric speed your "
-                   "extruder supports.");
+        "extruder supports.");
     def->sidetext = L("mm³/s");
     def->cli = "max-volumetric-speed=f";
     def->min = 0;

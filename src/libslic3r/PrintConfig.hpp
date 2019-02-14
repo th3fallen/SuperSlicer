@@ -64,6 +64,7 @@ enum SeamPosition {
 
 enum FilamentType {
     ftPLA, ftABS, ftPET, ftHIPS, ftFLEX, ftSCAFF, ftEDGE, ftNGEN, ftPVA
+    , ftOther0, ftOther1, ftOther2, ftOther3, ftOther4, ftOther5, ftOther6, ftOther7, ftOther8, ftOther9
 };
 
 enum DenseInfillAlgo {
@@ -190,6 +191,16 @@ template<> inline const t_config_enum_values& ConfigOptionEnum<FilamentType>::ge
         keys_map["EDGE"]            = ftEDGE;
         keys_map["NGEN"]            = ftNGEN;
         keys_map["PVA"]             = ftPVA;
+        keys_map["other0"]          = ftOther0;
+        keys_map["other1"]          = ftOther1;
+        keys_map["other2"]          = ftOther2;
+        keys_map["other3"]          = ftOther3;
+        keys_map["other4"]          = ftOther4;
+        keys_map["other5"]          = ftOther5;
+        keys_map["other6"]          = ftOther6;
+        keys_map["other7"]          = ftOther7;
+        keys_map["other8"]          = ftOther8;
+        keys_map["other9"]          = ftOther9;
     }
     return keys_map;
 }
@@ -708,6 +719,7 @@ public:
     ConfigOptionBools               filament_soluble;
     ConfigOptionFloats              filament_cost;
     ConfigOptionFloats              filament_max_volumetric_speed;
+    ConfigOptionFloats              filament_max_wipe_tower_speed;
     ConfigOptionFloats              filament_loading_speed;
     ConfigOptionFloats              filament_loading_speed_start;
     ConfigOptionFloats              filament_load_time;
@@ -786,6 +798,7 @@ protected:
         OPT_PTR(filament_soluble);
         OPT_PTR(filament_cost);
         OPT_PTR(filament_max_volumetric_speed);
+        OPT_PTR(filament_max_wipe_tower_speed);
         OPT_PTR(filament_loading_speed);
         OPT_PTR(filament_loading_speed_start);
         OPT_PTR(filament_load_time);

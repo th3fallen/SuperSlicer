@@ -33,7 +33,17 @@ public:
 		SCAFF = 5,		// E:215C	B:55C
 		EDGE  = 6,		// E:240C	B:80C
 		NGEN  = 7,		// E:230C	B:80C
-		PVA   = 8	    // E:210C	B:80C
+		PVA   = 8,	    // E:210C	B:80C
+        other0 = 10,
+        other1 = 11,
+        other2 = 12,
+        other3 = 13,
+        other4 = 14,
+        other5 = 15,
+        other6 = 16,
+        other7 = 17,
+        other8 = 18,
+        other9 = 19,
 	};
 
 	// Parse material name into material_type.
@@ -77,7 +87,7 @@ public:
         m_filpar.push_back(FilamentParameters());
 
         m_filpar[idx].material = material;
-        if (material == FLEX || material == SCAFF || material == PVA) {
+        if (material == FLEX || material == SCAFF || material == PVA) { //TODO add filament_max_wipe_tower_speed != 0
     		// MMU2 lowers the print speed using the speed override (M220) for printing of soluble PVA/BVOH and flex materials.
     		// Therefore it does not make sense to use the new M220 B and M220 R (backup / restore).
         	m_retain_speed_override = false;
@@ -202,6 +212,7 @@ private:
     const float Width_To_Nozzle_Ratio = 1.25f; // desired line width (oval) in multiples of nozzle diameter - may not be actually neccessary to adjust
     const float WT_EPSILON            = 1e-3f;
 
+    PrintConfig &m_config;
 
 	xy 	   m_wipe_tower_pos; 			// Left front corner of the wipe tower in mm.
 	float  m_wipe_tower_width; 			// Width of the wipe tower.
