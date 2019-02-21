@@ -2967,7 +2967,6 @@ void PrintObjectSupportMaterial::generate_toolpaths(
         break;
     }
     InfillPattern interface_pattern = m_object_config->support_material_interface_pattern;
-    std::cout << "support interface pattern : " << interface_pattern << "\n";
     BoundingBox bbox_object(Point(-scale_(1.), -scale_(1.0)), Point(scale_(1.), scale_(1.)));
 
 //    const coordf_t link_max_length_factor = 3.;
